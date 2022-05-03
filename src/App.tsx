@@ -1,12 +1,14 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
 
-function App() {
-  return (
-    <div>
-      Hello World!
-    </div>
-  );
+interface Props {
+  data: any[];
 }
 
-export default App;
+export const App: React.FC<Props> = ({data}) => {
+  return (
+    <div>
+      { JSON.stringify(data) }
+    </div>
+  )
+}
