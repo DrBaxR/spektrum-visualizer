@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ExportUnit, getNodeDisplayIdentifier, getUnitIcon } from "../data/export-unit";
 import '../styles/TreeNode.css';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
+import { ProgressBar } from "./ProgressBar";
 
 interface Props {
   node: ExportUnit;
@@ -53,15 +54,14 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
   }
 
   return (
-    <div>
+    <div className="tree-node-component">
       <div className="identifier" onClick={() => handleIdentifierClick()}>
         {getUnitIcon(node)}
+        <div className="coverage-metric">
+          <ProgressBar progress={node.coverage} />
+        </div>
         {hasChildren() && <span className="expand-icon">{expanded ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>}
         {getNodeDisplayIdentifier(node)}
-        <span className="metrics">
-          <span className="metric">{node.coverage.toFixed(2)}%</span>
-          <span className="metric">{node.testAmount.toFixed(2)}%</span>
-        </span>
       </div>
       {expanded && getNodeChildren()}
     </div>

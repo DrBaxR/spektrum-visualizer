@@ -1,4 +1,6 @@
 .identifier {
+  display: flex;
+  align-items: center;
   user-select: none;
   cursor: pointer;
 }
@@ -13,4 +15,10 @@
 
 .metrics .metric {
   margin-left: 5px;
+}
+
+.coverage-metric {
+  height: 10px;
+  width: 50px;
+  margin-left: 10px;
 }
