@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ExportUnit, getNodeDisplayIdentifier } from "../data/export-unit";
+import { ExportUnit, getNodeDisplayIdentifier, getUnitIcon } from "../data/export-unit";
 import '../styles/TreeNode.css';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 
@@ -55,6 +55,7 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
   return (
     <div>
       <div className="identifier" onClick={() => handleIdentifierClick()}>
+        {getUnitIcon(node)}
         {hasChildren() && <span className="expand-icon">{expanded ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>}
         {getNodeDisplayIdentifier(node)}
       </div>

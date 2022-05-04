@@ -2,3 +2,7 @@
   user-select: none;
   cursor: pointer;
 }
+
+.identifier .expand-icon {
+  margin-right: 10px;
+}
