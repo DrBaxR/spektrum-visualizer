@@ -1,4 +1,4 @@
-export const getData = () => {
+export const getData = (): Promise<any[]> => {
   return fetch('data.json', {
     headers: {
       'Content-Type': 'application/json',
