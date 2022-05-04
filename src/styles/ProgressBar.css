@@ -1,12 +1,29 @@
 .progress-bar-component {
   background: red;
-  border-radius: 5px;
-  overflow: hidden;
   height: 100%;
+  position: relative;
 }
 
 .bar {
   background-color: green;
   height: 100%;
-  border-radius: 5px;
+}
+
+.tooltip {
+  position: absolute;
+  visibility: hidden;
+  background-color: black;
+  color: white;
+  right: 50px;
+  z-index: 100;
+  width: 60px;
+  font-size: 14px;
+  border-radius: 3px;
+  display: grid;
+  place-items: center;
+  height: 30px;
+}
+
+.progress-bar-component:hover .tooltip {
+  visibility: visible;
 }
