@@ -6,3 +6,11 @@
 .identifier .expand-icon {
   margin-right: 10px;
 }
+
+.metrics {
+  margin-left: 10px;
+}
+
+.metrics .metric {
+  margin-left: 5px;
+}

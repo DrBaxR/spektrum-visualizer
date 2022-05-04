@@ -58,6 +58,10 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
         {getUnitIcon(node)}
         {hasChildren() && <span className="expand-icon">{expanded ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>}
         {getNodeDisplayIdentifier(node)}
+        <span className="metrics">
+          <span className="metric">{node.coverage.toFixed(2)}%</span>
+          <span className="metric">{node.testAmount.toFixed(2)}%</span>
+        </span>
       </div>
       {expanded && getNodeChildren()}
     </div>
