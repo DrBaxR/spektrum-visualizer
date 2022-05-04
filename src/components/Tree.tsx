@@ -43,7 +43,7 @@ export const Tree: React.FC<Props> = ({ nodes }) => {
   };
 
   return (
-    <div>
+    <div className="tree-component">
       <ul>{nodes.map(n => mapNode(n))}</ul>
     </div>
   );

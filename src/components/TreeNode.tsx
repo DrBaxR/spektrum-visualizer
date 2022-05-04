@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { ExportUnit } from "../data/export-unit";
+import { ExportUnit, getNodeDisplayIdentifier } from "../data/export-unit";
+import '../styles/TreeNode.css';
+import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 
 interface Props {
   node: ExportUnit;
@@ -15,11 +17,6 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
 
     return map;
   });
-
-  const getNodeDisplayIdentifier = (node: ExportUnit): string => {
-    const splitIdentifier = node.identifier.split("->");
-    return splitIdentifier[splitIdentifier.length - 1];
-  };
 
   const isChildExpanded = (child: ExportUnit): boolean => {
     return !!childrenNodesExpanded.get(child.identifier);
@@ -39,7 +36,7 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
     return (
       <ul>
         {node.children?.map(child => (
-          <li key={child.identifier}>
+          <li className="children" key={child.identifier}>
             <TreeNode node={child} expanded={isChildExpanded(child)} onIdentifierClick={handleChildIdentifierClick}/>
           </li>
         ))}
@@ -51,9 +48,16 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
     onIdentifierClick(node.identifier)
   }
 
+  const hasChildren = (): boolean => {
+    return !!node.children?.length;
+  }
+
   return (
     <div>
-      <div className="identifier" onClick={() => handleIdentifierClick()}>{getNodeDisplayIdentifier(node)}</div>
+      <div className="identifier" onClick={() => handleIdentifierClick()}>
+        {hasChildren() && <span className="expand-icon">{expanded ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>}
+        {getNodeDisplayIdentifier(node)}
+      </div>
       {expanded && getNodeChildren()}
     </div>
   );
