@@ -1,4 +1,6 @@
-export const getData = (): Promise<any[]> => {
+import { ExportUnit } from "./export-unit"
+
+export const getData = (): Promise<ExportUnit[]> => {
   return fetch('data.json', {
     headers: {
       'Content-Type': 'application/json',

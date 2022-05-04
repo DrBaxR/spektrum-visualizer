@@ -1,14 +1,11 @@
-import React from 'react'
-import './App.css'
+import React from "react";
+import { Tree } from "./components/Tree";
+import { ExportUnit } from "./data/export-unit";
 
 interface Props {
-  data: any[];
+  data: ExportUnit[];
 }
 
-export const App: React.FC<Props> = ({data}) => {
-  return (
-    <div>
-      { JSON.stringify(data) }
-    </div>
-  )
-}
+export const App: React.FC<Props> = ({ data }) => {
+  return <Tree nodes={data} />;
+};
