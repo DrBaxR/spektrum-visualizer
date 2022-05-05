@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { ExportUnit, getNodeDisplayIdentifier, getUnitIcon } from "../data/export-unit";
-import '../styles/TreeNode.css';
+import { ExportUnit, getNodeDisplayIdentifier, getUnitIcon } from "../model/export-unit";
+import './TreeNode.css';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { ProgressBar } from "./ProgressBar";
 

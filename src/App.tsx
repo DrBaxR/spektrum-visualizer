@@ -1,7 +1,7 @@
 import React from "react";
 import { Tree } from "./components/Tree";
-import { ExportUnit } from "./data/export-unit";
-import "./styles/App.css";
+import { ExportUnit } from "./model/export-unit";
+import "./App.css";
 
 interface Props {
   data: ExportUnit[];

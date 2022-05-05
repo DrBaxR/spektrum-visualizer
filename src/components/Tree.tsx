@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { ExportUnit } from "../data/export-unit";
-import "../styles/Tree.css";
+import { ExportUnit } from "../model/export-unit";
+import "./Tree.css";
 import { TreeNode } from "./TreeNode";
 
 interface Props {

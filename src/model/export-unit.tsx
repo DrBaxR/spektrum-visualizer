@@ -1,14 +1,9 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/react-in-jsx-scope */
-import { GrProjects, GrStatusUnknown } from "react-icons/gr";
-import {
-  VscSymbolNamespace,
-  VscFile,
-  VscSymbolClass,
-  VscSymbolMethod
-} from "react-icons/vsc";
+import { GrStatusUnknown } from "react-icons/gr";
+import { iconTypeMap } from "../constants/type-icon-map";
 
-enum UnitTypes {
+export enum UnitTypes {
   project = "PROJECT",
   file = "FILE",
   namespace = "NAMESPACE",
@@ -29,15 +24,8 @@ export const getNodeDisplayIdentifier = (node: ExportUnit): string => {
   return splitIdentifier[splitIdentifier.length - 1];
 };
 
-const iconMap = new Map([
-  [UnitTypes.project, <GrProjects />],
-  [UnitTypes.file, <VscFile />],
-  [UnitTypes.namespace, <VscSymbolNamespace />],
-  [UnitTypes.class, <VscSymbolClass />],
-  [UnitTypes.method, <VscSymbolMethod />]
-]);
 export const getUnitIcon = (unit: ExportUnit): JSX.Element => {
-  const iconNullable = iconMap.get(unit.type);
+  const iconNullable = iconTypeMap.get(unit.type);
   const icon = iconNullable !== undefined ? iconNullable : <GrStatusUnknown />;
   return icon;
 };

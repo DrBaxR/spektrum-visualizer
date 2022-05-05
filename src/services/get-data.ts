@@ -1,4 +1,4 @@
-import { ExportUnit } from "./export-unit"
+import { ExportUnit } from "../model/export-unit"
 
 export const getData = (): Promise<ExportUnit[]> => {
   return fetch('data.json', {
