@@ -1,0 +1,15 @@
+.search-component {
+  display: flex;
+  height: 21px;
+  align-items: center;
+}
+
+.search-component .icon {
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.search-component .input {
+  margin-left: 10px;
+}
