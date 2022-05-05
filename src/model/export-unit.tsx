@@ -1,7 +1,12 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/react-in-jsx-scope */
-import { GrStatusUnknown } from "react-icons/gr";
-import { iconTypeMap } from "../constants/type-icon-map";
+import { GrProjects, GrStatusUnknown } from "react-icons/gr";
+import {
+  VscSymbolNamespace,
+  VscFile,
+  VscSymbolClass,
+  VscSymbolMethod
+} from "react-icons/vsc";
 
 export enum UnitTypes {
   project = "PROJECT",
@@ -10,6 +15,14 @@ export enum UnitTypes {
   class = "CLASS",
   method = "METHOD"
 }
+
+const iconTypeMap = new Map([
+  [UnitTypes.project, <GrProjects />],
+  [UnitTypes.file, <VscFile />],
+  [UnitTypes.namespace, <VscSymbolNamespace />],
+  [UnitTypes.class, <VscSymbolClass />],
+  [UnitTypes.method, <VscSymbolMethod />]
+]);
 
 export interface ExportUnit {
   identifier: string;
