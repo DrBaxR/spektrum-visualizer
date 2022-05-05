@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { ExportUnit, getNodeDisplayIdentifier, getUnitIcon } from "../../model/export-unit";
+import { ExportUnit } from "../../model/export-unit";
 import './TreeNode.css';
-import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
-import { ProgressBar } from "../ProgressBar";
 import { Search } from "../Search";
+import { TreeHeader } from "./TreeHeader";
 
 interface Props {
   node: ExportUnit;
@@ -47,10 +46,6 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
     );
   };
 
-  const handleIdentifierClick = () => {
-    onIdentifierClick(node.identifier)
-  }
-
   const handleFilterValueChange = (newValue: string) => {
     const filteredChildren = node.children.filter(c => {
       const splitId = c.identifier.split("->");
@@ -68,17 +63,8 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
   return (
     <div className="tree-node-component">
       <div className="header">
-        <div className="identifier" onClick={() => handleIdentifierClick()}>
-          {getUnitIcon(node)}
-          <div className="coverage-metric">
-            <ProgressBar progress={node.coverage} />
-          </div>
-          <div className="coverage-metric">
-            <ProgressBar progress={node.testAmount} />
-          </div>
-          {hasChildren() && <span className="expand-icon">{expanded ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>}
-          {<div className={!hasChildren() ? "end-node-identifier" : ""}>{getNodeDisplayIdentifier(node)}</div>}
-        </div>
+        <TreeHeader expanded={expanded} onIdentifierClicked={() => onIdentifierClick(node.identifier)} node={node} />
+
         {hasChildren() && expanded && <Search onValueChanged={handleFilterValueChange} />}
       </div>
 
