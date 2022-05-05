@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Search.css";
 import { VscSearch } from "react-icons/vsc";
+import { MdCancel } from "react-icons/md";
 
 interface Props {
   onValueChanged: (newValue: string) => void;
@@ -8,15 +9,23 @@ interface Props {
 
 export const Search: React.FC<Props> = ({ onValueChanged }) => {
   const [inputVisible, setInputVisible] = useState(false);
-  const [InputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
+
+  const changeInputValue = (newValue: string) => {
+    setInputValue(newValue);
+    onValueChanged(newValue);
+  };
 
   const handleIconClick = () => {
     setInputVisible(prev => !prev);
   };
 
   const handleInputChange = (e: any) => {
-    setInputValue(e.target.value);
-    onValueChanged(e.target.value);
+    changeInputValue(e.target.value);
+  };
+
+  const handleCancelButtonClick = () => {
+    changeInputValue("");
   };
 
   return (
@@ -25,12 +34,20 @@ export const Search: React.FC<Props> = ({ onValueChanged }) => {
         <VscSearch />
       </div>
       {inputVisible && (
-        <input
-          className="input"
-          type="text"
-          value={InputValue}
-          onChange={handleInputChange}
-        />
+        <div className="search-field">
+          <input
+            autoFocus
+            className="input"
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+          {inputValue !== "" && (
+            <div className="cancel-icon" onClick={handleCancelButtonClick}>
+              <MdCancel />
+            </div>
+          )}
+        </div>
       )}
     </div>
   );
