@@ -60,8 +60,11 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
         <div className="coverage-metric">
           <ProgressBar progress={node.coverage} />
         </div>
+        <div className="coverage-metric">
+          <ProgressBar progress={node.testAmount} />
+        </div>
         {hasChildren() && <span className="expand-icon">{expanded ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>}
-        {getNodeDisplayIdentifier(node)}
+        {<div className={!hasChildren() ? "end-node-identifier" : ""}>{getNodeDisplayIdentifier(node)}</div>}
       </div>
       {expanded && getNodeChildren()}
     </div>
