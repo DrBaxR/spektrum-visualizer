@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { ExportUnit, getNodeDisplayIdentifier, getUnitIcon } from "../model/export-unit";
+import { ExportUnit, getNodeDisplayIdentifier, getUnitIcon } from "../../model/export-unit";
 import './TreeNode.css';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
-import { ProgressBar } from "./ProgressBar";
-import { Search } from "./Search";
+import { ProgressBar } from "../ProgressBar";
+import { Search } from "../Search";
 
 interface Props {
   node: ExportUnit;

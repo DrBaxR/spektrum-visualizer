@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ExportUnit } from "../model/export-unit";
+import { ExportUnit } from "../../model/export-unit";
 import "./Tree.css";
 import { TreeNode } from "./TreeNode";
 
