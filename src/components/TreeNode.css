@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 
+.header {
+  display: flex;
+}
+
 .identifier .expand-icon {
   margin-right: 10px;
 }
@@ -25,4 +29,8 @@
 
 .end-node-identifier {
   margin-left: 30px;
+}
+
+.search-component {
+  margin-left: 10px;
 }

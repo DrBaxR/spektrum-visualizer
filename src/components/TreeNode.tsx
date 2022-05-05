@@ -3,6 +3,7 @@ import { ExportUnit, getNodeDisplayIdentifier, getUnitIcon } from "../model/expo
 import './TreeNode.css';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io'
 import { ProgressBar } from "./ProgressBar";
+import { Search } from "./Search";
 
 interface Props {
   node: ExportUnit;
@@ -18,6 +19,7 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
 
     return map;
   });
+  const [filteredChildren, setFilteredChildren] = useState(node.children);
 
   const isChildExpanded = (child: ExportUnit): boolean => {
     return !!childrenNodesExpanded.get(child.identifier);
@@ -36,7 +38,7 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
   const getNodeChildren = () => {
     return (
       <ul>
-        {node.children?.map(child => (
+        {filteredChildren?.map(child => (
           <li className="children" key={child.identifier}>
             <TreeNode node={child} expanded={isChildExpanded(child)} onIdentifierClick={handleChildIdentifierClick}/>
           </li>
@@ -49,23 +51,37 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
     onIdentifierClick(node.identifier)
   }
 
+  const handleFilterValueChange = (newValue: string) => {
+    const filteredChildren = node.children.filter(c => {
+      const splitId = c.identifier.split("->");
+      const shortId = splitId[splitId.length - 1];
+      return shortId.toLowerCase().includes(newValue.toLowerCase());
+    })
+
+    setFilteredChildren(filteredChildren);
+  }
+
   const hasChildren = (): boolean => {
     return !!node.children?.length;
   }
 
   return (
     <div className="tree-node-component">
-      <div className="identifier" onClick={() => handleIdentifierClick()}>
-        {getUnitIcon(node)}
-        <div className="coverage-metric">
-          <ProgressBar progress={node.coverage} />
+      <div className="header">
+        <div className="identifier" onClick={() => handleIdentifierClick()}>
+          {getUnitIcon(node)}
+          <div className="coverage-metric">
+            <ProgressBar progress={node.coverage} />
+          </div>
+          <div className="coverage-metric">
+            <ProgressBar progress={node.testAmount} />
+          </div>
+          {hasChildren() && <span className="expand-icon">{expanded ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>}
+          {<div className={!hasChildren() ? "end-node-identifier" : ""}>{getNodeDisplayIdentifier(node)}</div>}
         </div>
-        <div className="coverage-metric">
-          <ProgressBar progress={node.testAmount} />
-        </div>
-        {hasChildren() && <span className="expand-icon">{expanded ? <IoIosArrowDown /> : <IoIosArrowForward />}</span>}
-        {<div className={!hasChildren() ? "end-node-identifier" : ""}>{getNodeDisplayIdentifier(node)}</div>}
+        {hasChildren() && expanded && <Search onValueChanged={handleFilterValueChange} />}
       </div>
+
       {expanded && getNodeChildren()}
     </div>
   );
