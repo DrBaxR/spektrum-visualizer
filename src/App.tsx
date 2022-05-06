@@ -12,7 +12,7 @@ export const App: React.FC<Props> = ({ data }) => {
   return (
     <div className="tree">
       <Tree nodes={data} />
-      <MetricFilter />
+      <MetricFilter onChange={value => console.log(value)} />
     </div>
   );
 };
