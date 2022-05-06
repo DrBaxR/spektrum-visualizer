@@ -36,3 +36,7 @@
 .search-component {
   margin-left: 10px;
 }
+
+.tree-node-component .filters {
+  display: flex;
+}
