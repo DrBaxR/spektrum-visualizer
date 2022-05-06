@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import "./Search.css";
 import { VscSearch } from "react-icons/vsc";
 import { MdCancel } from "react-icons/md";
 
 interface Props {
   onValueChanged: (newValue: string) => void;
+  extra: ReactElement;
 }
 
-export const Search: React.FC<Props> = ({ onValueChanged }) => {
+export const Search: React.FC<Props> = ({ onValueChanged, extra }) => {
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
@@ -34,19 +35,22 @@ export const Search: React.FC<Props> = ({ onValueChanged }) => {
         <VscSearch />
       </div>
       {inputVisible && (
-        <div className="search-field">
-          <input
-            autoFocus
-            className="input"
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-          />
-          {inputValue !== "" && (
-            <div className="cancel-icon" onClick={handleCancelButtonClick}>
-              <MdCancel />
-            </div>
-          )}
+        <div className="hideable-fields">
+          <div className="search-field">
+            <input
+              autoFocus
+              className="input"
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+            />
+            {inputValue !== "" && (
+              <div className="cancel-icon" onClick={handleCancelButtonClick}>
+                <MdCancel />
+              </div>
+            )}
+          </div>
+          {extra}
         </div>
       )}
     </div>

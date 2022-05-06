@@ -84,8 +84,9 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
 
         {hasChildren() && expanded && (
         <div className="filters">
-          <Search onValueChanged={handleFilterValueChange} />
-          <MetricFilter onChange={handleMetricFilterChange}/>
+          <Search 
+          onValueChanged={handleFilterValueChange} 
+          extra={<MetricFilter onChange={handleMetricFilterChange}/>} />
         </div>)}
       </div>
 

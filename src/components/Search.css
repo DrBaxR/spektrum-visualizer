@@ -27,11 +27,15 @@
   margin-right: 5px;
 }
 
-.search-component input {
+.search-component input.input {
   border: none;
   padding: 5px;
 }
 
-.search-component input:focus {
+.search-component input.input:focus {
   outline: none;
+}
+
+.hideable-fields {
+  display: flex;
 }
