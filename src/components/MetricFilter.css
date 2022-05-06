@@ -1,0 +1,31 @@
+/* this file is horrendous, ignore it - quick hack */
+.metric-filter-component .metric-input {
+  height: 27px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.metric-filter-component .operation-input {
+  height: 27px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.metric-filter-component .amount-input {
+  height: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+  border-radius: 5px;
+  width: 30px;
+}
+
+.metric-filter-component .amount-input input {
+  border: none;
+  padding: 5px;
+}
+
+.metric-filter-component .amount-input input:focus {
+  outline: none;
+}

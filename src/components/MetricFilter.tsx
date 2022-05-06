@@ -1,5 +1,6 @@
 import React, { BaseSyntheticEvent, useState } from "react";
 import { metricFilterFormValidators } from "../validators/metric-filter-form-validators";
+import "./MetricFilter.css";
 
 interface Props {
   onChange: (change: MetricFilterFormSchema) => void;
@@ -39,6 +40,7 @@ export const MetricFilter: React.FC<Props> = ({ onChange }) => {
       <form>
         <select
           name="metric"
+          className="metric-input"
           value={formState.metric}
           onChange={handleFormChange}
         >
@@ -48,6 +50,7 @@ export const MetricFilter: React.FC<Props> = ({ onChange }) => {
         </select>
         <select
           name="operation"
+          className="operation-input"
           value={formState.operation}
           onChange={handleFormChange}
         >
@@ -60,6 +63,7 @@ export const MetricFilter: React.FC<Props> = ({ onChange }) => {
         <input
           type="text"
           name="amount"
+          className="amount-input"
           value={formState.amount}
           onChange={handleFormChange}
         />

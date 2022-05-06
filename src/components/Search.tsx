@@ -50,7 +50,21 @@ export const Search: React.FC<Props> = ({ onValueChanged, extra }) => {
               </div>
             )}
           </div>
-          {extra}
+          {
+            <div style={{ display: "flex" }}>
+              <div
+                style={{
+                  display: "grid",
+                  placeItems: "center",
+                  marginLeft: "10px"
+                }}
+              >
+                {" "}
+                {"&&"}{" "}
+              </div>
+              <div>{extra}</div>
+            </div>
+          }
         </div>
       )}
     </div>
