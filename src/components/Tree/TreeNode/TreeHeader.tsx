@@ -1,7 +1,7 @@
 import React from "react";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
-import { ExportUnit, getNodeDisplayIdentifier, getUnitIcon } from "../../model/export-unit";
-import { ProgressBar } from "../ProgressBar";
+import { ExportUnit, getNodeDisplayIdentifier, getUnitIcon } from "../../../model/export-unit";
+import { ProgressBar } from "../../ProgressBar";
 
 interface Props {
   onIdentifierClicked: () => void;

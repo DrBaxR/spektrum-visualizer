@@ -1,4 +1,4 @@
-import { ExportUnit } from "../../../model/export-unit";
+import { ExportUnit } from "../../../../model/export-unit";
 
 export const tag = (unit: ExportUnit, amount: number): boolean => {
   return unit.testAmount * 100 > amount
