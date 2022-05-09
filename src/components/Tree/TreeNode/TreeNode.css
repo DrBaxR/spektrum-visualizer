@@ -40,3 +40,14 @@
 .tree-node-component .filters {
   display: flex;
 }
+
+.tree-node-component .action-buttons {
+  display: flex;
+}
+
+.tree-node-component .action-buttons .button {
+  margin-left: 5px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}

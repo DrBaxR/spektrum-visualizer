@@ -5,6 +5,7 @@ import { Search } from "../../Search";
 import { TreeHeader } from "./TreeHeader";
 import { MetricFilter, MetricFilterFormSchema } from "../../MetricFilter";
 import { getMetricFilterFunction, getNameFilterFunction } from "./helpers";
+import { VscCollapseAll, VscExpandAll } from "react-icons/vsc";
 
 interface Props {
   node: ExportUnit;
@@ -59,6 +60,40 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
     setFilteredChildren(filteredChildren);
   }
 
+  const hasChildren = (): boolean => {
+    return !!node.children?.length;
+  }
+
+  const hasAnyExpandableChild = (): boolean => {
+    return node.children.some(c => c.children?.length)
+  }
+
+  const expandChildrenRecursively = () => {
+    setChildrenNodesExpanded(prev => {
+      const newVal = new Map(prev);
+
+      prev.forEach((value, key) => {
+        newVal.set(key, true);
+      });
+
+      return newVal;
+    })
+
+    // TODO: recursive part
+  }
+
+  const collapseAllChildrenRecursively = () => {
+    setChildrenNodesExpanded(prev => {
+      const newVal = new Map(prev);
+
+      prev.forEach((value, key) => {
+        newVal.set(key, false);
+      });
+
+      return newVal;
+    })
+  }
+
   const handleFilterValueChange = (newValue: string) => {
     nameFilterFunction = getNameFilterFunction(newValue);
 
@@ -71,8 +106,12 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
     filterChildren();
   }
 
-  const hasChildren = (): boolean => {
-    return !!node.children?.length;
+  const handleExpandAllClick = () => {
+    expandChildrenRecursively();
+  }
+
+  const handleCollapseAllClick = () => {
+    collapseAllChildrenRecursively();
   }
 
   return (
@@ -81,11 +120,27 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
         <TreeHeader expanded={expanded} onIdentifierClicked={() => onIdentifierClick(node.identifier)} node={node} />
 
         {hasChildren() && expanded && (
-        <div className="filters">
-          <Search 
-          onValueChanged={handleFilterValueChange} 
-          extra={<MetricFilter onChange={handleMetricFilterChange}/>} />
-        </div>)}
+          <>
+            {hasAnyExpandableChild() && (
+              <>
+                <div className="action-buttons">
+                <div className="button" onClick={handleExpandAllClick}>
+                <VscExpandAll />
+                </div>
+                <div className="button" onClick={handleCollapseAllClick}>
+                <VscCollapseAll />
+                </div>
+                </div>
+              </>
+            )}
+
+            <div className="filters">
+              <Search 
+              onValueChanged={handleFilterValueChange} 
+              extra={<MetricFilter onChange={handleMetricFilterChange}/>} />
+            </div>
+          </>
+        )}
       </div>
 
       {expanded && getNodeChildren()}
