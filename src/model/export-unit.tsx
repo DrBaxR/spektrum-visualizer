@@ -5,7 +5,8 @@ import {
   VscSymbolNamespace,
   VscFile,
   VscSymbolClass,
-  VscSymbolMethod
+  VscSymbolMethod,
+  VscPackage
 } from "react-icons/vsc";
 
 export enum UnitTypes {
@@ -13,7 +14,8 @@ export enum UnitTypes {
   file = "FILE",
   namespace = "NAMESPACE",
   class = "CLASS",
-  method = "METHOD"
+  method = "METHOD",
+  package = "PACKAGE"
 }
 
 const iconTypeMap = new Map([
@@ -21,7 +23,8 @@ const iconTypeMap = new Map([
   [UnitTypes.file, <VscFile />],
   [UnitTypes.namespace, <VscSymbolNamespace />],
   [UnitTypes.class, <VscSymbolClass />],
-  [UnitTypes.method, <VscSymbolMethod />]
+  [UnitTypes.method, <VscSymbolMethod />],
+  [UnitTypes.package, <VscPackage />]
 ]);
 
 export interface ExportUnit {

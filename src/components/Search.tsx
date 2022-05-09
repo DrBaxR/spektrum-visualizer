@@ -2,6 +2,7 @@ import React, { ReactElement, useState } from "react";
 import "./Search.css";
 import { VscSearch } from "react-icons/vsc";
 import { MdCancel } from "react-icons/md";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 interface Props {
   onValueChanged: (newValue: string) => void;
@@ -59,8 +60,7 @@ export const Search: React.FC<Props> = ({ onValueChanged, extra }) => {
                   marginLeft: "10px"
                 }}
               >
-                {" "}
-                {"&&"}{" "}
+                <IoIosAddCircleOutline />
               </div>
               <div>{extra}</div>
             </div>

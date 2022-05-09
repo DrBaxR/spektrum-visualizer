@@ -1,4 +1,5 @@
 import React, { BaseSyntheticEvent, useState } from "react";
+import { MdCancel } from "react-icons/md";
 import { metricFilterFormValidators } from "../validators/metric-filter-form-validators";
 import "./MetricFilter.css";
 
@@ -13,11 +14,15 @@ export interface MetricFilterFormSchema {
 }
 
 export const MetricFilter: React.FC<Props> = ({ onChange }) => {
-  const [formState, setFormState] = useState<MetricFilterFormSchema>({
+  const initialFormState: MetricFilterFormSchema = {
     metric: "",
     operation: "",
-    amount: ""
-  });
+    amount: "0"
+  };
+
+  const [formState, setFormState] = useState<MetricFilterFormSchema>(
+    initialFormState
+  );
 
   const isValid = (e: BaseSyntheticEvent): boolean => {
     return metricFilterFormValidators[e.target.name](e.target.value);
@@ -35,9 +40,14 @@ export const MetricFilter: React.FC<Props> = ({ onChange }) => {
     }
   };
 
+  const resetFilter = () => {
+    setFormState(initialFormState);
+    onChange(initialFormState);
+  };
+
   return (
     <div className="metric-filter-component">
-      <form>
+      <form className="form">
         <select
           name="metric"
           className="metric-input"
@@ -48,25 +58,34 @@ export const MetricFilter: React.FC<Props> = ({ onChange }) => {
           <option value="coverage">Coverage %</option>
           <option value="test">Test %</option>
         </select>
-        <select
-          name="operation"
-          className="operation-input"
-          value={formState.operation}
-          onChange={handleFormChange}
-        >
-          <option value="">Operation...</option>
-          <option value="greater">{">"}</option>
-          <option value="less">{"<"}</option>
-          <option value="greater-eq">{">="}</option>
-          <option value="less-eq">{"<="}</option>
-        </select>
-        <input
-          type="text"
-          name="amount"
-          className="amount-input"
-          value={formState.amount}
-          onChange={handleFormChange}
-        />
+        {formState.metric !== "" && (
+          <select
+            name="operation"
+            className="operation-input"
+            value={formState.operation}
+            onChange={handleFormChange}
+          >
+            <option value="">Op...</option>
+            <option value="greater">{">"}</option>
+            <option value="less">{"<"}</option>
+            <option value="greater-eq">{">="}</option>
+            <option value="less-eq">{"<="}</option>
+          </select>
+        )}
+        {formState.operation !== "" && (
+          <>
+            <input
+              type="text"
+              name="amount"
+              className="amount-input"
+              value={formState.amount}
+              onChange={handleFormChange}
+            />
+            <div className="cancel-icon" onClick={resetFilter}>
+              <MdCancel />
+            </div>
+          </>
+        )}
       </form>
     </div>
   );

@@ -65,8 +65,6 @@ export const TreeNode: React.FC<Props> = ({ node, expanded, onIdentifierClick })
     filterChildren();
   }
 
-
-
   const handleMetricFilterChange = (change: MetricFilterFormSchema): void => {
     metricFilterFunction = getMetricFilterFunction(change);
 
