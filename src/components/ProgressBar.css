@@ -9,6 +9,10 @@
   height: 100%;
 }
 
+.bar.blue {
+  background-color: blue;
+}
+
 .tooltip {
   position: absolute;
   visibility: hidden;

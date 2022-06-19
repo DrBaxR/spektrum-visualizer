@@ -21,7 +21,7 @@ export const TreeHeader: React.FC<Props> = ({ onIdentifierClicked, node, expande
         <ProgressBar progress={node.coverage} />
       </div>
       <div className="coverage-metric">
-        <ProgressBar progress={node.testAmount} />
+        <ProgressBar progress={node.testAmount} blue />
       </div>
       {hasChildren() && (
         <span className="expand-icon">
